@@ -1,2 +1,3 @@
 # shell-o
-synchronous performant non-failing shell commands
+
+Synchronous performant non-failing shell commands
