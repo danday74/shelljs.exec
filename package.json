@@ -1,0 +1,50 @@
+{
+  "name": "shell-o",
+  "version": "1.0.0",
+  "description": "Synchronous performant non-failing shell command execution",
+  "author": "Daniel Lewis BSc (Hons)",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover -x \"**/*.spec.js\" ./node_modules/mocha/bin/_mocha",
+    "enforcer": "./node_modules/.bin/istanbul check-coverage --statement 100 --branch 100 --function 100 --line 100",
+    "build": "npm-run-all test enforcer",
+    "prepush": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danday74/shell-o.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danday74/shell-o/issues"
+  },
+  "homepage": "https://github.com/danday74/shell-o#readme",
+  "keywords": [
+    "shell-o",
+    "shell",
+    "shelljs",
+    "shell-js",
+    "shell js",
+    "bash",
+    "child_process",
+    "child_process.exec",
+    "child_process.execSync",
+    "exec-sync",
+    "exec sync"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "coveralls": "2.11.16",
+    "eslint": "^4.6.1",
+    "husky": "^0.14.3",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.0",
+    "npm-run-all": "^4.1.1",
+    "sinon": "^3.2.1",
+    "sinon-chai": "^2.13.0"
+  },
+  "engines": {
+    "node": ">= 4"
+  }
+}
