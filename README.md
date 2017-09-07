@@ -41,7 +41,7 @@ expect(cmdObj.err).to.be.an('error')
 expect(cmdObj.err.message).to.match(/not recognized/)
 
 expect(cmdObj.out).to.be.undefined
-expect(cmdObj.code).to.equal(1)
+expect(cmdObj.code).to.be.above(0)
 expect(cmdObj.ok).to.be.false
 ```
 

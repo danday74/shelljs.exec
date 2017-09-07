@@ -23,7 +23,7 @@ describe('shell-o', function() {
     imp.expect(cmdObj.err.message).to.match(/not found|not recognized/)
 
     imp.expect(cmdObj.out).to.be.undefined
-    imp.expect(cmdObj.code).to.equal(1)
+    imp.expect(cmdObj.code).to.be.above(0)
     imp.expect(cmdObj.ok).to.be.false
   })
 })
