@@ -20,7 +20,7 @@ describe('shell-o', function() {
     var shello = require('../../index')
     var cmdObj = shello('gecho hello', {stdio: 'pipe'})
     imp.expect(cmdObj.err).to.be.an('error')
-    imp.expect(cmdObj.err.message).to.match(/not recognized/)
+    imp.expect(cmdObj.err.message).to.match(/not found|not recognized/)
 
     imp.expect(cmdObj.out).to.be.undefined
     imp.expect(cmdObj.code).to.equal(1)
