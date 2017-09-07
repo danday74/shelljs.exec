@@ -8,7 +8,7 @@ function shello(command, options) {
     ok = true
   } catch (e) {
     err = e
-    code = 1
+    code = e.status
     ok = false
   }
   return {

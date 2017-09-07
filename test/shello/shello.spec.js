@@ -7,7 +7,7 @@ var Buffer = 'Uint8Array'
 describe('shell-o', function() {
 
   it('success', function() {
-    var cmdObj = shello('echo hello')
+    var cmdObj = shello('echo hello', {stdio: 'pipe'})
     imp.expect(cmdObj.out).to.be.a(Buffer)
     imp.expect(cmdObj.out.toString()).to.match(/hello/)
 
@@ -17,7 +17,7 @@ describe('shell-o', function() {
   })
 
   it('failure', function() {
-    var cmdObj = shello('gecho hello')
+    var cmdObj = shello('gecho hello', {stdio: 'pipe'})
     imp.expect(cmdObj.err).to.be.an('error')
     imp.expect(cmdObj.err.message).to.match(/not recognized/)
 
