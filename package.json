@@ -6,6 +6,7 @@
   "license": "ISC",
   "main": "index.js",
   "scripts": {
+    "benchmark": "node benchmark",
     "test": "./node_modules/.bin/istanbul cover -x \"**/*.spec.js\" ./node_modules/mocha/bin/_mocha",
     "enforcer": "./node_modules/.bin/istanbul check-coverage --statement 100 --branch 100 --function 100 --line 100",
     "build": "npm-run-all test enforcer",
@@ -40,7 +41,8 @@
     "husky": "^0.14.3",
     "istanbul": "^0.4.5",
     "mocha": "^3.5.0",
-    "npm-run-all": "^4.1.1"
+    "npm-run-all": "^4.1.1",
+    "shelljs": "^0.7.8"
   },
   "engines": {
     "node": ">= 4"
