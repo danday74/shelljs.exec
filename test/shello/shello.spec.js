@@ -11,8 +11,9 @@ describe('shell-o', function() {
     var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
     imp.expect(cmdObj).to.eql({
-      out: 'hello' + EOL,
-      err: undefined,
+      error: null,
+      stdout: 'hello' + EOL,
+      stderr: '',
       code: 0,
       ok: true
     })
@@ -20,12 +21,14 @@ describe('shell-o', function() {
 
   it('failure', function() {
     var shello = require('../../index')
-    var cmdObj = shello('gecho hello', {stdio: 'pipe', encoding:'utf-8'})
+    var cmd = 'blip blop'
+    var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
-    imp.expect(cmdObj.err).to.be.an('error')
-    imp.expect(cmdObj.err.message).to.match(/not found|not recognized/)
+    imp.expect(cmdObj.error).to.be.an('error')
+    imp.expect(cmdObj.error.message).to.match(/not found|not recognized/)
 
-    imp.expect(cmdObj.out).to.be.undefined
+    imp.expect(cmdObj.stdout).to.equal('')
+    imp.expect(cmdObj.stderr).to.match(/not found|not recognized/)
     imp.expect(cmdObj.code).to.be.above(0)
     imp.expect(cmdObj.ok).to.be.false
   })

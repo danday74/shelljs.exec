@@ -1,19 +1,26 @@
+'use strict'
 var cp = require('child_process')
 
 function shello(command, options) {
-  var out, err, code, ok
+  var error, stdout, stderr, code, ok
   try {
-    out = cp.execSync(command, options)
+    error = null
+    stdout = cp.execSync(command, options)
+    stderr = ''
     code = 0
     ok = true
   } catch (e) {
-    err = e
-    code = e.status
+    error = e
+    stdout = e.stdout
+    stderr = e.stderr
+    code = e.status || /* istanbul ignore next */ 1
     ok = false
   }
+
   return {
-    out: out,
-    err: err,
+    error: error,
+    stdout: stdout,
+    stderr: stderr,
     code: code,
     ok: ok
   }
