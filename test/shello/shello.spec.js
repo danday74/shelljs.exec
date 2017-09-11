@@ -1,24 +1,27 @@
 'use strict'
 
 var imp = require('../_js/testImports')
-var Buffer = 'Uint8Array'
+var EOL = require('os').EOL
 
 describe('shell-o', function() {
 
   it('success', function() {
     var shello = require('../../index')
-    var cmdObj = shello('echo hello', {stdio: 'pipe'})
-    imp.expect(cmdObj.out).to.be.a(Buffer)
-    imp.expect(cmdObj.out.toString()).to.match(/hello/)
+    var cmd = 'echo hello'
+    var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
-    imp.expect(cmdObj.err).to.be.undefined
-    imp.expect(cmdObj.code).to.equal(0)
-    imp.expect(cmdObj.ok).to.be.true
+    imp.expect(cmdObj).to.eql({
+      out: 'hello' + EOL,
+      err: undefined,
+      code: 0,
+      ok: true
+    })
   })
 
   it('failure', function() {
     var shello = require('../../index')
-    var cmdObj = shello('gecho hello', {stdio: 'pipe'})
+    var cmdObj = shello('gecho hello', {stdio: 'pipe', encoding:'utf-8'})
+
     imp.expect(cmdObj.err).to.be.an('error')
     imp.expect(cmdObj.err.message).to.match(/not found|not recognized/)
 
