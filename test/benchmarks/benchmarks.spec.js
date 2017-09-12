@@ -45,7 +45,7 @@ describe('benchmarks: shell-o v shelljs', function() {
         shelljsCmdTime = end - start
         console.log('shelljs.echo time -----> ', shelljsCmdTime.toFixed(2))
 
-        imp.expect(shelljsExecTime).to.be.above(shelloTime * 9)
+        imp.expect(shelljsExecTime).to.be.above(shelloTime * 8)
         imp.expect(shelloTime).to.be.above(shelljsCmdTime * 4)
       })
     })
@@ -129,6 +129,39 @@ describe('benchmarks: shell-o v shelljs', function() {
         imp.expect(shelljsExecTime).to.be.above(shelloTime * 3.5)
         // shello sometimes faster here
         // imp.expect(shelloTime).to.be.above(shelljsCmdTime * 1.0)
+      })
+    })
+  })
+
+  describe('shelljs unsupported commands', function() {
+
+    describe('git rev-parse --is-inside-work-tree', function() {
+
+      before(function() {
+        var git1 = shello('where git', {stdio: 'pipe', encoding: 'utf-8'})
+        var git2 = shello('which git', {stdio: 'pipe', encoding: 'utf-8'})
+        if (!git1.ok && !git2.ok) {
+          this.skip()
+        }
+      })
+
+      it('git rev-parse --is-inside-work-tree', function() {
+
+        start = now()
+        cmdObj = shelljs.exec('git rev-parse --is-inside-work-tree', {silent: true})
+        end = now()
+        imp.expect(cmdObj.stdout).to.equal('true\n')
+        shelljsExecTime = end - start
+        console.log('shelljs.exec time -----> ', shelljsExecTime.toFixed(2))
+
+        start = now()
+        cmdObj = shello('git rev-parse --is-inside-work-tree', {stdio: 'pipe', encoding: 'utf-8'})
+        end = now()
+        imp.expect(cmdObj.stdout).to.equal('true\n')
+        shelloTime = end - start
+        console.log('shello time -----------> ', shelloTime.toFixed(2))
+
+        imp.expect(shelljsExecTime).to.be.above(shelloTime * 4)
       })
     })
   })
