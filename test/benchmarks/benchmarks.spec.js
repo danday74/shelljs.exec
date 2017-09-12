@@ -10,7 +10,7 @@ describe('benchmarks: shell-o v shelljs', function() {
   var cmdObj, start, end
   var shelljsCmdTime, shelljsExecTime, shelloTime
   var shelljsCmdTimePct, shelljsExecTimePct, shelljsCmdTimeWord, shelljsExecTimeWord
-  var COUNT = 1000
+  var COUNT = 1
   var RANGE = imp.range(COUNT)
 
   function report(shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, cmd) {
