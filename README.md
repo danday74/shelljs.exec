@@ -19,28 +19,30 @@ On success it returns a JSON object:
 
 ```javascript 1.5
 var shello = require('shell-o')
-var options = {stdio: 'pipe'}
-var cmdObj = shello('echo hello', options)
-    
-expect(cmdObj.out).to.be.a(Buffer)
-expect(cmdObj.out.toString()).to.match(/hello/)
+var cmd = 'echo hello'
+var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
-expect(cmdObj.err).to.be.undefined
-expect(cmdObj.code).to.equal(0)
-expect(cmdObj.ok).to.be.true
+expect(cmdObj).to.eql({
+  error: null, // same as child_process.exec
+  stdout: 'hello\n',
+  stderr: '', // same as child_process.exec
+  code: 0,
+  ok: true
+})
 ```
 
 On failure it returns a JSON object:
 
 ```javascript 1.5
 var shello = require('shell-o')
-var options = {stdio: 'pipe'}
-var cmdObj = shello('gecho hello', options)
+var cmd = 'blip blop'
+var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
-expect(cmdObj.err).to.be.an('error')
-expect(cmdObj.err.message).to.match(/not recognized/)
+expect(cmdObj.error).to.be.an('error')
+expect(cmdObj.error.message).to.match(/not found|not recognized/)
 
-expect(cmdObj.out).to.be.undefined
+expect(cmdObj.stdout).to.equal('')
+expect(cmdObj.stderr).to.match(/not found|not recognized/)
 expect(cmdObj.code).to.be.above(0)
 expect(cmdObj.ok).to.be.false
 ```

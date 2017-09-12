@@ -6,20 +6,22 @@ var EOL = require('os').EOL
 describe('shell-o', function() {
 
   it('success', function() {
+
     var shello = require('../../index')
     var cmd = 'echo hello'
     var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
     imp.expect(cmdObj).to.eql({
-      error: null,
+      error: null, // same as child_process.exec
       stdout: 'hello' + EOL,
-      stderr: '',
+      stderr: '', // same as child_process.exec
       code: 0,
       ok: true
     })
   })
 
   it('failure', function() {
+
     var shello = require('../../index')
     var cmd = 'blip blop'
     var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
