@@ -34,6 +34,6 @@ describe('benchmarks: shell-o v shelljs', function() {
     console.log('shelljs.echo time -----> ', shelljsCmdTime.toFixed(2))
 
     imp.expect(shelljsExecTime).to.be.above(shelloTime * 10) // 10 is good
-    imp.expect(shelloTime).to.be.above(shelljsCmdTime * 6) // 6 is good
+    imp.expect(shelloTime).to.be.above(shelljsCmdTime * 4) // 4 is good
   })
 })
