@@ -92,6 +92,7 @@ describe('benchmarks: shell-o v shelljs', function() {
     console.log('shelljs.cat time ------> ', shelljsCmdTime.toFixed(2))
 
     imp.expect(shelljsExecTime).to.be.above(shelloTime * 3.5)
-    imp.expect(shelloTime).to.be.above(shelljsCmdTime * 1.0)
+    // shello sometimes faster here
+    // imp.expect(shelloTime).to.be.above(shelljsCmdTime * 1.0)
   })
 })
