@@ -37,31 +37,61 @@ describe('benchmarks: shell-o v shelljs', function() {
   //   imp.expect(shelloTime).to.be.above(shelljsCmdTime * 4)
   // })
 
-  it('which - a shelljs supported command', function() {
+  // it('which - a shelljs supported command', function() {
+  //
+  //   start = now()
+  //   cmdObj = shelljs.exec('which echo', {silent: true})
+  //   end = now()
+  //   imp.expect(cmdObj.code).to.equal(0)
+  //   shelljsExecTime = end - start
+  //   console.log('shelljs.exec time -----> ', shelljsExecTime.toFixed(2))
+  //
+  //   start = now()
+  //   cmdObj = shello('which echo', {stdio: 'pipe', encoding: 'utf-8'})
+  //   end = now()
+  //   imp.expect(cmdObj.code).to.equal(0)
+  //   shelloTime = end - start
+  //   console.log('shello time -----------> ', shelloTime.toFixed(2))
+  //
+  //   start = now()
+  //   cmdObj = shelljs.which('echo')
+  //   end = now()
+  //   imp.expect(cmdObj).to.not.be.null
+  //   imp.expect(cmdObj.code).to.equal(0)
+  //   shelljsCmdTime = end - start
+  //   console.log('shelljs.which time ----> ', shelljsCmdTime.toFixed(2))
+  //
+  //   imp.expect(shelljsExecTime).to.be.above(shelloTime * 1.9)
+  //   imp.expect(shelloTime).to.be.above(shelljsCmdTime * 1.2)
+  // })
+
+  it('cat - a shelljs supported command', function() {
+
+    var file1 = __dirname + '/file1'
+    var file2 = __dirname + '/file2'
 
     start = now()
-    cmdObj = shelljs.exec('which echo', {silent: true})
+    cmdObj = shelljs.exec('cat ' + file1 + ' ' + file2, {silent: true})
     end = now()
-    imp.expect(cmdObj.code).to.equal(0)
+    imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
     shelljsExecTime = end - start
     console.log('shelljs.exec time -----> ', shelljsExecTime.toFixed(2))
 
     start = now()
-    cmdObj = shello('which echo', {stdio: 'pipe', encoding: 'utf-8'})
+    cmdObj = shello('cat ' + file1 + ' ' + file2, {stdio: 'pipe', encoding: 'utf-8'})
     end = now()
-    imp.expect(cmdObj.code).to.equal(0)
+    imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
     shelloTime = end - start
     console.log('shello time -----------> ', shelloTime.toFixed(2))
 
     start = now()
-    cmdObj = shelljs.which('echo')
+    cmdObj = shelljs.cat(file1, file2)
     end = now()
-    imp.expect(cmdObj).to.not.be.null
-    imp.expect(cmdObj.code).to.equal(0)
+    imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
     shelljsCmdTime = end - start
-    console.log('shelljs.which time -----> ', shelljsCmdTime.toFixed(2))
+    console.log('shelljs.cat time ------> ', shelljsCmdTime.toFixed(2))
 
-    imp.expect(shelljsExecTime).to.be.above(shelloTime * 1.9)
-    imp.expect(shelloTime).to.be.above(shelljsCmdTime * 1.2)
+    imp.expect(shelljsExecTime).to.be.above(shelloTime * 3.5)
+    imp.expect(shelloTime).to.be.above(shelljsCmdTime * 6)
   })
 })
