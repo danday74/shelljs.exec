@@ -59,9 +59,9 @@ describe('benchmarks: shell-o v shelljs', function() {
     imp.expect(cmdObj).to.not.be.null
     imp.expect(cmdObj.code).to.equal(0)
     shelljsCmdTime = end - start
-    console.log('shelljs.echo time -----> ', shelljsCmdTime.toFixed(2))
+    console.log('shelljs.which time -----> ', shelljsCmdTime.toFixed(2))
 
     imp.expect(shelljsExecTime).to.be.above(shelloTime * 1.9)
-    imp.expect(shelloTime).to.be.above(shelljsCmdTime * 26)
+    imp.expect(shelloTime).to.be.above(shelljsCmdTime * 1.8)
   })
 })
