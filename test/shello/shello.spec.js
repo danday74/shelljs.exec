@@ -1,7 +1,6 @@
 'use strict'
 
 var imp = require('../_js/testImports')
-var EOL = require('os').EOL
 
 describe('shell-o', function() {
 
@@ -13,7 +12,7 @@ describe('shell-o', function() {
 
     imp.expect(cmdObj).to.eql({
       error: null, // same as child_process.exec
-      stdout: 'hello' + EOL,
+      stdout: 'hello' + imp.EOL,
       stderr: '', // same as child_process.exec
       code: 0,
       ok: true

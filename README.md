@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/dm/shell-o.svg)](https://www.npmjs.com/package/shell-o)
 [![node](https://img.shields.io/node/v/shell-o.svg)](https://www.npmjs.com/package/shell-o)
 
-**Synchronous performant non-failing shell command execution**
+**Synchronous shell command execution, benchmark tests prove shell-o is much faster than the shelljs exec method**
 
 **shell-o** is a wrapper for [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
 
