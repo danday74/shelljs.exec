@@ -1,4 +1,4 @@
 test
 --recursive
 --reporter spec
---slow 500
+--slow 1200
