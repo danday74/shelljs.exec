@@ -14,14 +14,6 @@ describe('benchmarks: shell-o v shelljs', function() {
 
     describe('echo', function() {
 
-      before(function() {
-        var echo1 = shello('where echo', {stdio: 'pipe', encoding: 'utf-8'})
-        var echo2 = shello('which echo', {stdio: 'pipe', encoding: 'utf-8'})
-        if (!echo1.ok && !echo2.ok) {
-          this.skip()
-        }
-      })
-
       it('echo', function() {
 
         start = now()
@@ -134,6 +126,66 @@ describe('benchmarks: shell-o v shelljs', function() {
   })
 
   describe('shelljs unsupported commands', function() {
+
+    describe('printf', function() {
+
+      before(function() {
+        var printf1 = shello('where printf', {stdio: 'pipe', encoding: 'utf-8'})
+        var printf2 = shello('which printf', {stdio: 'pipe', encoding: 'utf-8'})
+        if (!printf1.ok && !printf2.ok) {
+          this.skip()
+        }
+      })
+
+      it('printf', function() {
+
+        start = now()
+        cmdObj = shelljs.exec('printf hello', {silent: true})
+        end = now()
+        imp.expect(cmdObj.stdout).to.equal('hello')
+        shelljsExecTime = end - start
+        console.log('shelljs.exec time -----> ', shelljsExecTime.toFixed(2))
+
+        start = now()
+        cmdObj = shello('printf hello', {stdio: 'pipe', encoding: 'utf-8'})
+        end = now()
+        imp.expect(cmdObj.stdout).to.equal('hello')
+        shelloTime = end - start
+        console.log('shello time -----------> ', shelloTime.toFixed(2))
+
+        imp.expect(shelljsExecTime).to.be.above(shelloTime * 4)
+      })
+    })
+
+    describe('whoami', function() {
+
+      before(function() {
+        var whoami1 = shello('where whoami', {stdio: 'pipe', encoding: 'utf-8'})
+        var whoami2 = shello('which whoami', {stdio: 'pipe', encoding: 'utf-8'})
+        if (!whoami1.ok && !whoami2.ok) {
+          this.skip()
+        }
+      })
+
+      it('whoami', function() {
+
+        start = now()
+        cmdObj = shelljs.exec('whoami', {silent: true})
+        end = now()
+        imp.expect(cmdObj.code).to.equal(0)
+        shelljsExecTime = end - start
+        console.log('shelljs.exec time -----> ', shelljsExecTime.toFixed(2))
+
+        start = now()
+        cmdObj = shello('whoami', {stdio: 'pipe', encoding: 'utf-8'})
+        end = now()
+        imp.expect(cmdObj.code).to.equal(0)
+        shelloTime = end - start
+        console.log('shello time -----------> ', shelloTime.toFixed(2))
+
+        imp.expect(shelljsExecTime).to.be.above(shelloTime * 4)
+      })
+    })
 
     describe('git rev-parse --is-inside-work-tree', function() {
 
