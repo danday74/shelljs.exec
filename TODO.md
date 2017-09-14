@@ -1,1 +1,2 @@
-* Default options
+* Coverage to 100
+

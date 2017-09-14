@@ -8,7 +8,7 @@ describe('shell-o', function() {
 
     var shello = require('../../index')
     var cmd = 'echo hello'
-    var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
+    var cmdObj = shello(cmd, {silent: true})
 
     imp.expect(cmdObj).to.eql({
       error: null, // same as child_process.exec
@@ -23,7 +23,7 @@ describe('shell-o', function() {
 
     var shello = require('../../index')
     var cmd = 'blip blop'
-    var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
+    var cmdObj = shello(cmd, {silent: true})
 
     imp.expect(cmdObj.error).to.be.an('error')
     imp.expect(cmdObj.error.message).to.match(/not found|not recognized/)
