@@ -1,14 +1,22 @@
 'use strict'
 
+var chalk = require('chalk')
+var now = require('performance-now')
+var shelljs = require('shelljs')
 var imp = require('../_js/testImports')
 var shello = require('../../index')
-var shelljs = require('shelljs')
-var now = require('performance-now')
 
 var COUNT = 2
 var RANGE = imp.range(COUNT)
 
 function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shelljsCmd) {
+
+  function getWord(percent) {
+    if (percent < 100)
+      return chalk.green((100 / percent).toFixed(1) + ' times faster than shello')
+    else
+      return chalk.red((percent / 100).toFixed(1) + ' times slower than shell-o')
+  }
 
   var shelljsCmdTimePct, shelljsExecTimePct, shelljsCmdTimeWord, shelljsExecTimeWord
 
@@ -16,20 +24,20 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
 
   shelljsExecTimeAvg = shelljsExecTimeAvg / COUNT
   shelljsExecTimePct = 100 / shelloTimeAvg * shelljsExecTimeAvg
-  shelljsExecTimeWord = (shelljsExecTimePct < 100) ? (100 / shelljsExecTimePct).toFixed(1) + ' times faster than shello' : (shelljsExecTimePct / 100).toFixed(1) + ' times slower than shell-o'
+  shelljsExecTimeWord = getWord(shelljsExecTimePct)
 
   if (shelljsCmdTimeAvg) {
     shelljsCmdTimeAvg = shelljsCmdTimeAvg / COUNT
     shelljsCmdTimePct = 100 / shelloTimeAvg * shelljsCmdTimeAvg
-    shelljsCmdTimeWord = (shelljsCmdTimePct < 100) ? (100 / shelljsCmdTimePct).toFixed(1) + ' times faster than shello' : (shelljsCmdTimePct / 100).toFixed(1) + ' times slower than shell-o'
+    shelljsCmdTimeWord = getWord(shelljsCmdTimePct)
   }
 
-  console.log('COMMAND =', cmd)
-  console.log('AVERAGE TIMES FOR ' + COUNT + ' RUNS')
-  console.log('shelljs.exec time -----> ', shelljsExecTimeAvg.toFixed(2) + 'ms', ' (' + shelljsExecTimePct.toFixed(2) + '%)', ' ' + shelljsExecTimeWord)
-  console.log('shello time -----------> ', shelloTimeAvg.toFixed(2) + 'ms', ' (100%)')
+  console.log(chalk.blue('COMMAND =', (cmd)))
+  console.log(chalk.grey('AVERAGE TIMES FOR ' + COUNT + ' RUNS'))
+  console.log(chalk.grey('shelljs.exec time -----> ', shelljsExecTimeAvg.toFixed(2) + 'ms', ' (' + shelljsExecTimePct.toFixed(2) + '%)', ' ' + shelljsExecTimeWord))
+  console.log(chalk.grey('shello time -----------> ', shelloTimeAvg.toFixed(2) + 'ms', ' (100%)'))
   if (shelljsCmdTimeAvg && shelljsCmd) {
-    console.log('shelljs.' + shelljsCmd + '> ', shelljsCmdTimeAvg.toFixed(2) + 'ms', ' (' + shelljsCmdTimePct.toFixed(2) + '%)', ' ' + shelljsCmdTimeWord)
+    console.log(chalk.grey('shelljs.' + shelljsCmd + '> ', shelljsCmdTimeAvg.toFixed(2) + 'ms', ' (' + shelljsCmdTimePct.toFixed(2) + '%)', ' ' + shelljsCmdTimeWord))
   }
 }
 
