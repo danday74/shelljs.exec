@@ -15,7 +15,6 @@ function normaliseOptions(options) {
 
   if (options == null || !isObject(options)) {
     options = {}
-
   } else {
 
     if (typeof options.silent !== 'undefined') {
