@@ -1,5 +1,3 @@
-* Add drop-in test
-
 * Tidy code
 
 * Rename and update package.json

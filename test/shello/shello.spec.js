@@ -34,6 +34,27 @@ describe('shell-o', function() {
     imp.expect(cmdObj.ok).to.be.false
   })
 
+  it('drop-in', function() {
+
+    var shelljs = require('shelljs')
+    var cmd = 'echo hello'
+    var cmdObj1 = shelljs.exec(cmd, {silent: true})
+
+    shelljs.exec = require('../../index')
+
+    var cmdObj2 = shelljs.exec(cmd, {silent: true})
+
+    imp.expect(cmdObj1.error).to.be.undefined
+    imp.expect(cmdObj2.error).to.be.null
+
+    imp.expect(cmdObj1.stdout).to.equal(cmdObj2.stdout)
+    imp.expect(cmdObj1.stderr).to.equal(cmdObj2.stderr)
+    imp.expect(cmdObj1.code).to.equal(cmdObj2.code)
+
+    imp.expect(cmdObj1.ok).to.be.undefined
+    imp.expect(cmdObj2.ok).to.be.true
+  })
+
   it('makes noise', function() {
 
     var shello = require('../../index')

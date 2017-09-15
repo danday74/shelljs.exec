@@ -4,8 +4,9 @@ node_js:
   - 8
   - 6
   - 4
+  - 4.0.0
+  - 0.12.18
 os:
   - linux
-  - osx
 after_success:
   - "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
