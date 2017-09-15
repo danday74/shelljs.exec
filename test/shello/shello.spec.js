@@ -118,7 +118,7 @@ describe('shell-o', function() {
       imp.expect(spy).to.have.been.calledWith(cmd, {encoding: 'utf8', silent: false, stdio: 'woteva'})
 
       imp.expect(cmdObj.error).to.be.an('error')
-      imp.expect(cmdObj.error.message).to.match(/Incorrect value of stdio option/)
+      imp.expect(cmdObj.error.message).to.match(/stdio/)
 
       imp.expect(cmdObj.stdout).to.be.undefined
       imp.expect(cmdObj.stderr).to.be.undefined
@@ -139,7 +139,7 @@ describe('shell-o', function() {
       imp.expect(spy).to.have.been.calledWith(cmd, {encoding: 'utf8', silent: true, stdio: 'woteva'})
 
       imp.expect(cmdObj.error).to.be.an('error')
-      imp.expect(cmdObj.error.message).to.match(/Incorrect value of stdio option/)
+      imp.expect(cmdObj.error.message).to.match(/stdio/)
 
       imp.expect(cmdObj.stdout).to.be.undefined
       imp.expect(cmdObj.stderr).to.be.undefined
