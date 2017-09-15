@@ -1,7 +1,11 @@
+* Add drop-in test
+
 * Tidy code
 
-* Rename
+* Rename and update package.json
 
-* Run benchmarks on Windows and Linux
+* Ensure packages up to date
+
+* Run benchmarks on Windows and Linux and OSX
 
 * Update README

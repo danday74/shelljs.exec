@@ -1,4 +1,5 @@
 'use strict'
+
 var cp = require('child_process')
 var normaliseOptions = require('./js/normaliseOptions')
 
@@ -7,6 +8,7 @@ function shello(command, options) {
   options = normaliseOptions(options)
 
   var error, stdout, stderr, code, ok
+
   try {
     error = null
     stdout = cp.execSync(command, options)

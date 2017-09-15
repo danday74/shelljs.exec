@@ -1,7 +1,7 @@
 {
   "name": "shell-o",
   "version": "1.0.0",
-  "description": "Synchronous performant non-failing shell command execution",
+  "description": "Drop-in replacement for shelljs' slow exec method, 5x faster",
   "author": "Daniel Lewis BSc (Hons)",
   "license": "ISC",
   "main": "index.js",
