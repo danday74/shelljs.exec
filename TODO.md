@@ -1,3 +1,5 @@
+* Reword / recolor test output (should red be green?)
+
 * Tidy code
 
 * Rename and update package.json
