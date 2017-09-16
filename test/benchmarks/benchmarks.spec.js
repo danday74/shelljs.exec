@@ -13,7 +13,7 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
 
   function getWord(percent) {
     if (percent < 100)
-      return chalk.green((100 / percent).toFixed(1) + ' times faster than shello')
+      return chalk.green((100 / percent).toFixed(1) + ' times faster than shell-o')
     else
       return chalk.red((percent / 100).toFixed(1) + ' times slower than shell-o')
   }
@@ -34,8 +34,8 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
 
   console.log(chalk.blue('COMMAND =', (cmd)))
   console.log(chalk.grey('AVERAGE TIMES FOR ' + COUNT + ' RUNS'))
-  console.log(chalk.grey('shelljs.exec time -----> ', shelljsExecTimeAvg.toFixed(2) + 'ms', ' (' + shelljsExecTimePct.toFixed(2) + '%)', ' ' + shelljsExecTimeWord))
-  console.log(chalk.grey('shello time -----------> ', shelloTimeAvg.toFixed(2) + 'ms', ' (100%)'))
+  console.log(chalk.grey('shelljs.exec --------------------> ', shelljsExecTimeAvg.toFixed(2) + 'ms', ' (' + shelljsExecTimePct.toFixed(2) + '%)', ' ' + shelljsExecTimeWord))
+  console.log(chalk.grey('shello --------------------------> ', shelloTimeAvg.toFixed(2) + 'ms', ' (100%)'))
   if (shelljsCmdTimeAvg && shelljsCmd) {
     console.log(chalk.grey('shelljs.' + shelljsCmd + '> ', shelljsCmdTimeAvg.toFixed(2) + 'ms', ' (' + shelljsCmdTimePct.toFixed(2) + '%)', ' ' + shelljsCmdTimeWord))
   }
@@ -79,7 +79,7 @@ describe('benchmarks: shell-o v shelljs', function() {
           shelljsCmdTimeAvg += shelljsCmdTime
         })
 
-        report('echo hello', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'echo time -----')
+        report('echo hello', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'echo --------------------')
       })
     })
 
@@ -122,7 +122,7 @@ describe('benchmarks: shell-o v shelljs', function() {
           shelljsCmdTimeAvg += shelljsCmdTime
         })
 
-        report('which git', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'which time ----')
+        report('which git', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'which -------------------')
       })
     })
 
@@ -167,7 +167,7 @@ describe('benchmarks: shell-o v shelljs', function() {
           shelljsCmdTimeAvg += shelljsCmdTime
         })
 
-        report('cat file1 file2', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'cat time ------')
+        report('cat file1 file2', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'cat ---------------------')
       })
     })
   })
