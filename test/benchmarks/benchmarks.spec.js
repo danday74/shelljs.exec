@@ -18,7 +18,7 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
       return chalk.red((percent / 100).toFixed(1) + ' times slower than shell-o')
   }
 
-  var shelljsCmdTimePct, shelljsExecTimePct, shelljsCmdTimeWord, shelljsExecTimeWord
+  var shelljsExecTimePct, shelljsCmdTimePct, shelljsExecTimeWord, shelljsCmdTimeWord
 
   shelloTimeAvg = shelloTimeAvg / COUNT
 
@@ -32,7 +32,7 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
     shelljsCmdTimeWord = getWord(shelljsCmdTimePct)
   }
 
-  console.log(chalk.blue('COMMAND =', (cmd)))
+  console.log(chalk.blue('COMMAND =', cmd))
   console.log(chalk.grey('AVERAGE TIMES FOR ' + COUNT + ' RUNS'))
   console.log(chalk.grey('shelljs.exec --------------------> ', shelljsExecTimeAvg.toFixed(2) + 'ms', ' (' + shelljsExecTimePct.toFixed(2) + '%)', ' ' + shelljsExecTimeWord))
   console.log(chalk.grey('shello --------------------------> ', shelloTimeAvg.toFixed(2) + 'ms', ' (100%)'))
@@ -44,7 +44,7 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
 describe('benchmarks: shell-o v shelljs', function() {
 
   var cmdObj, start, end
-  var shelljsCmdTime, shelljsExecTime, shelloTime
+  var shelljsExecTime, shelloTime, shelljsCmdTime
 
   describe('shelljs supported commands', function() {
 
@@ -52,7 +52,7 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('echo hello', function() {
 
-        var shelljsCmdTimeAvg = 0, shelljsExecTimeAvg = 0, shelloTimeAvg = 0
+        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0, shelljsCmdTimeAvg = 0
 
         RANGE.forEach(function() {
 
@@ -88,16 +88,17 @@ describe('benchmarks: shell-o v shelljs', function() {
       before(function() {
         var which = shello('which which', {silent: true})
         var git = shello('which git', {silent: true})
-        if (!which.ok && !git.ok) {
+        if (!which.ok || !git.ok) {
           this.skip()
         }
       })
 
       it('which git', function() {
 
-        var shelljsCmdTimeAvg = 0, shelljsExecTimeAvg = 0, shelloTimeAvg = 0
+        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0, shelljsCmdTimeAvg = 0
 
         RANGE.forEach(function() {
+
           start = now()
           cmdObj = shelljs.exec('which git', {silent: true})
           end = now()
@@ -138,12 +139,13 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('cat file1 file2', function() {
 
-        var shelljsCmdTimeAvg = 0, shelljsExecTimeAvg = 0, shelloTimeAvg = 0
+        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0, shelljsCmdTimeAvg = 0
 
         var file1 = __dirname + '/file1'
         var file2 = __dirname + '/file2'
 
         RANGE.forEach(function() {
+
           start = now()
           cmdObj = shelljs.exec('cat ' + file1 + ' ' + file2, {silent: true})
           end = now()
@@ -224,6 +226,7 @@ describe('benchmarks: shell-o v shelljs', function() {
         var shelljsExecTimeAvg = 0, shelloTimeAvg = 0
 
         RANGE.forEach(function() {
+
           start = now()
           cmdObj = shelljs.exec('whoami', {silent: true})
           end = now()
@@ -259,6 +262,7 @@ describe('benchmarks: shell-o v shelljs', function() {
         var shelljsExecTimeAvg = 0, shelloTimeAvg = 0
 
         RANGE.forEach(function() {
+
           start = now()
           cmdObj = shelljs.exec('git rev-parse --is-inside-work-tree', {silent: true})
           end = now()
