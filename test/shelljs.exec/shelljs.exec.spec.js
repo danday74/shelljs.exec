@@ -2,7 +2,7 @@
 
 var imp = require('../_js/testImports')
 
-describe('shell-o', function() {
+describe('shelljs.exec', function() {
 
   it('success', function() {
 

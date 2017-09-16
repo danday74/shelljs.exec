@@ -13,9 +13,9 @@ function report(cmd, shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, shell
 
   function getWord(percent) {
     if (percent < 100)
-      return chalk.green((100 / percent).toFixed(1) + ' times faster than shell-o')
+      return chalk.green((100 / percent).toFixed(1) + ' times faster than shelljs.exec')
     else
-      return chalk.red((percent / 100).toFixed(1) + ' times slower than shell-o')
+      return chalk.red((percent / 100).toFixed(1) + ' times slower than shelljs.exec')
   }
 
   var shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg
@@ -42,7 +42,7 @@ function report(cmd, shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, shell
   }
 }
 
-describe('benchmarks: shell-o v shelljs', function() {
+describe('benchmarks: shelljs v shelljs.exec', function() {
 
   var cmdObj, start, end
   var shelljsExecTime, shelloTime, shelljsCmdTime
