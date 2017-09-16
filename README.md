@@ -24,33 +24,13 @@ shelljs.exec has been benchmarked at 10 times faster than shelljs!
 On success it returns a JSON object:
 
 ```javascript 1.5
-var shello = require('shelljs.exec')
-var cmd = 'echo hello'
-var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
-
-expect(cmdObj).to.eql({
-  error: null, // same as child_process.exec
-  stdout: 'hello\n',
-  stderr: '', // same as child_process.exec
-  code: 0,
-  ok: true
-})
+TODO
 ```
 
 On failure it returns a JSON object:
 
 ```javascript 1.5
-var shello = require('shelljs.exec')
-var cmd = 'blip blop'
-var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
-
-expect(cmdObj.error).to.be.an('error')
-expect(cmdObj.error.message).to.match(/not found|not recognized/)
-
-expect(cmdObj.stdout).to.equal('')
-expect(cmdObj.stderr).to.match(/not found|not recognized/)
-expect(cmdObj.code).to.be.above(0)
-expect(cmdObj.ok).to.be.false
+TODO
 ```
 
 For the full list of available options see [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)

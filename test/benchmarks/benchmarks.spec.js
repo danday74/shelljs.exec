@@ -4,7 +4,7 @@ var chalk = require('chalk')
 var now = require('performance-now')
 var shelljs = require('shelljs')
 var imp = require('../_js/testImports')
-var shello = require('../../index')
+var shelljsExec = require('../../index')
 
 var COUNT = 2
 var RANGE = imp.range(COUNT)
@@ -64,7 +64,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           shelljsExecTime = end - start
 
           start = now()
-          cmdObj = shello('echo hello', {silent: true})
+          cmdObj = shelljsExec('echo hello', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello' + imp.EOL)
           shelloTime = end - start
@@ -87,8 +87,8 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
     describe('which', function() {
 
       before(function() {
-        var which = shello('which which', {silent: true})
-        var git = shello('which git', {silent: true})
+        var which = shelljsExec('which which', {silent: true})
+        var git = shelljsExec('which git', {silent: true})
         if (!which.ok || !git.ok) {
           this.skip()
         }
@@ -107,7 +107,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           shelljsExecTime = end - start
 
           start = now()
-          cmdObj = shello('which git', {silent: true})
+          cmdObj = shelljsExec('which git', {silent: true})
           end = now()
           imp.expect(cmdObj.code).to.equal(0)
           shelloTime = end - start
@@ -131,8 +131,8 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
     describe('cat', function() {
 
       before(function() {
-        var cat1 = shello('where cat', {silent: true})
-        var cat2 = shello('which cat', {silent: true})
+        var cat1 = shelljsExec('where cat', {silent: true})
+        var cat2 = shelljsExec('which cat', {silent: true})
         if (!cat1.ok && !cat2.ok) {
           this.skip()
         }
@@ -154,7 +154,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           shelljsExecTime = end - start
 
           start = now()
-          cmdObj = shello('cat ' + file1 + ' ' + file2, {silent: true})
+          cmdObj = shelljsExec('cat ' + file1 + ' ' + file2, {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
           shelloTime = end - start
@@ -180,8 +180,8 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
     describe('printf', function() {
 
       before(function() {
-        var printf1 = shello('where printf', {silent: true})
-        var printf2 = shello('which printf', {silent: true})
+        var printf1 = shelljsExec('where printf', {silent: true})
+        var printf2 = shelljsExec('which printf', {silent: true})
         if (!printf1.ok && !printf2.ok) {
           this.skip()
         }
@@ -200,7 +200,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           shelljsExecTime = end - start
 
           start = now()
-          cmdObj = shello('printf hello', {silent: true})
+          cmdObj = shelljsExec('printf hello', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello')
           shelloTime = end - start
@@ -216,8 +216,8 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
     describe('whoami', function() {
 
       before(function() {
-        var whoami1 = shello('where whoami', {silent: true})
-        var whoami2 = shello('which whoami', {silent: true})
+        var whoami1 = shelljsExec('where whoami', {silent: true})
+        var whoami2 = shelljsExec('which whoami', {silent: true})
         if (!whoami1.ok && !whoami2.ok) {
           this.skip()
         }
@@ -236,7 +236,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           shelljsExecTime = end - start
 
           start = now()
-          cmdObj = shello('whoami', {silent: true})
+          cmdObj = shelljsExec('whoami', {silent: true})
           end = now()
           imp.expect(cmdObj.code).to.equal(0)
           shelloTime = end - start
@@ -252,8 +252,8 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
     describe('git', function() {
 
       before(function() {
-        var git1 = shello('where git', {silent: true})
-        var git2 = shello('which git', {silent: true})
+        var git1 = shelljsExec('where git', {silent: true})
+        var git2 = shelljsExec('which git', {silent: true})
         if (!git1.ok && !git2.ok) {
           this.skip()
         }
@@ -272,7 +272,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           shelljsExecTime = end - start
 
           start = now()
-          cmdObj = shello('git rev-parse --is-inside-work-tree', {silent: true})
+          cmdObj = shelljsExec('git rev-parse --is-inside-work-tree', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('true\n')
           shelloTime = end - start
