@@ -1,4 +1,4 @@
-* Rename and update package.json and tests - try both alternatives for searching
+* Rename and update package.json and tests
 * Rename benchmark vars
 
 * Ensure packages up to date
