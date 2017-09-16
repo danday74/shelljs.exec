@@ -1,5 +1,5 @@
 {
-  "name": "shell-o",
+  "name": "shelljs.exec",
   "version": "1.0.0",
   "description": "Drop-in replacement for shelljs' slow exec method, 5x faster",
   "author": "Daniel Lewis BSc (Hons)",
