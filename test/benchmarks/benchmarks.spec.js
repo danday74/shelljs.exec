@@ -9,7 +9,7 @@ var shello = require('../../index')
 var COUNT = 2
 var RANGE = imp.range(COUNT)
 
-function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shelljsCmd) {
+function report(cmd, shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, shelljsCmd) {
 
   function getWord(percent) {
     if (percent < 100)
@@ -18,16 +18,17 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
       return chalk.red((percent / 100).toFixed(1) + ' times slower than shell-o')
   }
 
+  var shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg
   var shelljsExecTimePct, shelljsCmdTimePct, shelljsExecTimeWord, shelljsCmdTimeWord
 
-  shelloTimeAvg = shelloTimeAvg / COUNT
+  shelloTimeAvg = shelloTimeSum / COUNT
 
-  shelljsExecTimeAvg = shelljsExecTimeAvg / COUNT
+  shelljsExecTimeAvg = shelljsExecTimeSum / COUNT
   shelljsExecTimePct = 100 / shelloTimeAvg * shelljsExecTimeAvg
   shelljsExecTimeWord = getWord(shelljsExecTimePct)
 
-  if (shelljsCmdTimeAvg) {
-    shelljsCmdTimeAvg = shelljsCmdTimeAvg / COUNT
+  if (shelljsCmdTimeSum) {
+    shelljsCmdTimeAvg = shelljsCmdTimeSum / COUNT
     shelljsCmdTimePct = 100 / shelloTimeAvg * shelljsCmdTimeAvg
     shelljsCmdTimeWord = getWord(shelljsCmdTimePct)
   }
@@ -36,7 +37,7 @@ function report(cmd, shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, shell
   console.log(chalk.grey('AVERAGE TIMES FOR ' + COUNT + ' RUNS'))
   console.log(chalk.grey('shelljs.exec --------------------> ', shelljsExecTimeAvg.toFixed(2) + 'ms', ' (' + shelljsExecTimePct.toFixed(2) + '%)', ' ' + shelljsExecTimeWord))
   console.log(chalk.grey('shello --------------------------> ', shelloTimeAvg.toFixed(2) + 'ms', ' (100%)'))
-  if (shelljsCmdTimeAvg && shelljsCmd) {
+  if (shelljsCmdTimeSum && shelljsCmd) {
     console.log(chalk.grey('shelljs.' + shelljsCmd + '> ', shelljsCmdTimeAvg.toFixed(2) + 'ms', ' (' + shelljsCmdTimePct.toFixed(2) + '%)', ' ' + shelljsCmdTimeWord))
   }
 }
@@ -52,7 +53,7 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('echo hello', function() {
 
-        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0, shelljsCmdTimeAvg = 0
+        var shelljsExecTimeSum = 0, shelloTimeSum = 0, shelljsCmdTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -74,12 +75,12 @@ describe('benchmarks: shell-o v shelljs', function() {
           imp.expect(cmdObj.stdout).to.equal('hello')
           shelljsCmdTime = end - start
 
-          shelljsExecTimeAvg += shelljsExecTime
-          shelloTimeAvg += shelloTime
-          shelljsCmdTimeAvg += shelljsCmdTime
+          shelljsExecTimeSum += shelljsExecTime
+          shelloTimeSum += shelloTime
+          shelljsCmdTimeSum += shelljsCmdTime
         })
 
-        report('echo hello', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'echo --------------------')
+        report('echo hello', shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, 'echo --------------------')
       })
     })
 
@@ -95,7 +96,7 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('which git', function() {
 
-        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0, shelljsCmdTimeAvg = 0
+        var shelljsExecTimeSum = 0, shelloTimeSum = 0, shelljsCmdTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -118,12 +119,12 @@ describe('benchmarks: shell-o v shelljs', function() {
           imp.expect(cmdObj.code).to.equal(0)
           shelljsCmdTime = end - start
 
-          shelljsExecTimeAvg += shelljsExecTime
-          shelloTimeAvg += shelloTime
-          shelljsCmdTimeAvg += shelljsCmdTime
+          shelljsExecTimeSum += shelljsExecTime
+          shelloTimeSum += shelloTime
+          shelljsCmdTimeSum += shelljsCmdTime
         })
 
-        report('which git', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'which -------------------')
+        report('which git', shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, 'which -------------------')
       })
     })
 
@@ -139,7 +140,7 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('cat file1 file2', function() {
 
-        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0, shelljsCmdTimeAvg = 0
+        var shelljsExecTimeSum = 0, shelloTimeSum = 0, shelljsCmdTimeSum = 0
 
         var file1 = __dirname + '/file1'
         var file2 = __dirname + '/file2'
@@ -164,12 +165,12 @@ describe('benchmarks: shell-o v shelljs', function() {
           imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
           shelljsCmdTime = end - start
 
-          shelljsExecTimeAvg += shelljsExecTime
-          shelloTimeAvg += shelloTime
-          shelljsCmdTimeAvg += shelljsCmdTime
+          shelljsExecTimeSum += shelljsExecTime
+          shelloTimeSum += shelloTime
+          shelljsCmdTimeSum += shelljsCmdTime
         })
 
-        report('cat file1 file2', shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg, 'cat ---------------------')
+        report('cat file1 file2', shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, 'cat ---------------------')
       })
     })
   })
@@ -188,7 +189,7 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('printf hello', function() {
 
-        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0
+        var shelljsExecTimeSum = 0, shelloTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -204,11 +205,11 @@ describe('benchmarks: shell-o v shelljs', function() {
           imp.expect(cmdObj.stdout).to.equal('hello')
           shelloTime = end - start
 
-          shelljsExecTimeAvg += shelljsExecTime
-          shelloTimeAvg += shelloTime
+          shelljsExecTimeSum += shelljsExecTime
+          shelloTimeSum += shelloTime
         })
 
-        report('printf hello', shelljsExecTimeAvg, shelloTimeAvg)
+        report('printf hello', shelljsExecTimeSum, shelloTimeSum)
       })
     })
 
@@ -224,7 +225,7 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('whoami', function() {
 
-        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0
+        var shelljsExecTimeSum = 0, shelloTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -240,11 +241,11 @@ describe('benchmarks: shell-o v shelljs', function() {
           imp.expect(cmdObj.code).to.equal(0)
           shelloTime = end - start
 
-          shelljsExecTimeAvg += shelljsExecTime
-          shelloTimeAvg += shelloTime
+          shelljsExecTimeSum += shelljsExecTime
+          shelloTimeSum += shelloTime
         })
 
-        report('whoami', shelljsExecTimeAvg, shelloTimeAvg)
+        report('whoami', shelljsExecTimeSum, shelloTimeSum)
       })
     })
 
@@ -260,7 +261,7 @@ describe('benchmarks: shell-o v shelljs', function() {
 
       it('git rev-parse --is-inside-work-tree', function() {
 
-        var shelljsExecTimeAvg = 0, shelloTimeAvg = 0
+        var shelljsExecTimeSum = 0, shelloTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -276,11 +277,11 @@ describe('benchmarks: shell-o v shelljs', function() {
           imp.expect(cmdObj.stdout).to.equal('true\n')
           shelloTime = end - start
 
-          shelljsExecTimeAvg += shelljsExecTime
-          shelloTimeAvg += shelloTime
+          shelljsExecTimeSum += shelljsExecTime
+          shelloTimeSum += shelloTime
         })
 
-        report('git rev-parse --is-inside-work-tree', shelljsExecTimeAvg, shelloTimeAvg)
+        report('git rev-parse --is-inside-work-tree', shelljsExecTimeSum, shelloTimeSum)
       })
     })
   })

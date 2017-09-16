@@ -1,10 +1,7 @@
-* Tidy code
-
-* test names
-
 * each block of testing is covering expected area
 
 * Rename and update package.json and tests - try both alternatives for searching
+* Rename benchmark vars
 
 * Ensure packages up to date
 
