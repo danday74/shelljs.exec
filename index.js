@@ -3,7 +3,7 @@
 var cp = require('child_process')
 var normaliseOptions = require('./js/normaliseOptions')
 
-function shello(command, options) {
+function shelljsExec(command, options) {
 
   options = normaliseOptions(options)
 
@@ -32,4 +32,4 @@ function shello(command, options) {
   }
 }
 
-module.exports = shello
+module.exports = shelljsExec
