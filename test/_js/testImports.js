@@ -9,10 +9,12 @@ var expect = chai.expect
 chai.use(sinonChai)
 
 // others
+
 var cp = require('child_process')
 var EOL = require('os').EOL
 
 // custom
+
 var DEFAULTS = require('../../js/normaliseOptions/defaultOptions')
 
 function range(num) {
