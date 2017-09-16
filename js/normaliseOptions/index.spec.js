@@ -1,6 +1,5 @@
 'use strict'
 
-var DEFAULTS = require('./defaultOptions')
 var imp = require('../../test/_js/testImports')
 var normaliseOptions = require('./index')
 
@@ -10,7 +9,7 @@ describe('normaliseOptions', function() {
 
   beforeEach(function() {
     actual = undefined
-    expected = Object.assign({}, DEFAULTS)
+    expected = Object.assign({}, imp.DEFAULTS)
   })
 
   it('options is undefined', function() {
