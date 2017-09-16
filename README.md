@@ -11,6 +11,12 @@
 
 **shell-o** is a wrapper for [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
 
+IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
+
+IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
+
+IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
+
 shell-o takes identical arguments ... `(command[, options])` ... but does not throw by default.
 
 shell-o has been benchmarked at 10 times faster than shelljs!

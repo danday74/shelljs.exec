@@ -1,6 +1,6 @@
 {
   "name": "shelljs.exec",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Drop-in replacement for shelljs' slow exec method, 5x faster",
   "author": "Daniel Lewis BSc (Hons)",
   "license": "ISC",
@@ -13,24 +13,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/danday74/shell-o.git"
+    "url": "git+https://github.com/danday74/shelljs.exec.git"
   },
   "bugs": {
-    "url": "https://github.com/danday74/shell-o/issues"
+    "url": "https://github.com/danday74/shelljs.exec/issues"
   },
-  "homepage": "https://github.com/danday74/shell-o#readme",
+  "homepage": "https://github.com/danday74/shelljs.exec#readme",
   "keywords": [
-    "shell-o",
+    "shelljs exec",
+    "shelljs.exec",
+    "shelljs-exec",
     "shell",
     "shelljs",
-    "shell-js",
     "shell js",
-    "bash",
+    "shell.js",
+    "shell-js",
     "child_process",
     "child_process.exec",
     "child_process.execSync",
-    "exec-sync",
     "exec sync",
+    "exec.sync",
+    "exec-sync",
+    "bash",
     "unix"
   ],
   "dependencies": {},
