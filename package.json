@@ -30,7 +30,8 @@
     "child_process.exec",
     "child_process.execSync",
     "exec-sync",
-    "exec sync"
+    "exec sync",
+    "unix"
   ],
   "dependencies": {},
   "devDependencies": {
