@@ -191,6 +191,7 @@ describe('benchmarks: shell-o v shelljs', function() {
         var shelljsExecTimeAvg = 0, shelloTimeAvg = 0
 
         RANGE.forEach(function() {
+
           start = now()
           cmdObj = shelljs.exec('printf hello', {silent: true})
           end = now()
