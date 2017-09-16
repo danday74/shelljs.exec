@@ -1,30 +1,30 @@
-# shell-o
+# shelljs.exec
 
-[![Build Status](https://travis-ci.org/danday74/shell-o.svg?branch=master)](https://travis-ci.org/danday74/shell-o)
-[![Coverage Status](https://coveralls.io/repos/github/danday74/shell-o/badge.svg?branch=master)](https://coveralls.io/github/danday74/shell-o?branch=master)
-[![dependencies Status](https://david-dm.org/danday74/shell-o/status.svg)](https://david-dm.org/danday74/shell-o)
-[![npm](https://img.shields.io/npm/v/shell-o.svg)](https://www.npmjs.com/package/shell-o)
-[![npm](https://img.shields.io/npm/dm/shell-o.svg)](https://www.npmjs.com/package/shell-o)
-[![node](https://img.shields.io/node/v/shell-o.svg)](https://www.npmjs.com/package/shell-o)
+[![Build Status](https://travis-ci.org/danday74/shelljs.exec.svg?branch=master)](https://travis-ci.org/danday74/shelljs.exec)
+[![Coverage Status](https://coveralls.io/repos/github/danday74/shelljs.exec/badge.svg?branch=master)](https://coveralls.io/github/danday74/shelljs.exec?branch=master)
+[![dependencies Status](https://david-dm.org/danday74/shelljs.exec/status.svg)](https://david-dm.org/danday74/shelljs.exec)
+[![npm](https://img.shields.io/npm/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
+[![npm](https://img.shields.io/npm/dm/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
+[![node](https://img.shields.io/node/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
 
-**Synchronous shell command execution, benchmark tests prove shell-o is much faster than the shelljs exec method**
+**Drop-in replacement for shelljs' slow exec method, 5x faster**
 
-**shell-o** is a wrapper for [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
-
-IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
+**shelljs.exec** is a wrapper for [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
 
 IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
 
 IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
 
-shell-o takes identical arguments ... `(command[, options])` ... but does not throw by default.
+IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
 
-shell-o has been benchmarked at 10 times faster than shelljs!
+shelljs.exec takes identical arguments ... `(command[, options])` ... but does not throw by default.
+
+shelljs.exec has been benchmarked at 10 times faster than shelljs!
 
 On success it returns a JSON object:
 
 ```javascript 1.5
-var shello = require('shell-o')
+var shello = require('shelljs.exec')
 var cmd = 'echo hello'
 var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
@@ -40,7 +40,7 @@ expect(cmdObj).to.eql({
 On failure it returns a JSON object:
 
 ```javascript 1.5
-var shello = require('shell-o')
+var shello = require('shelljs.exec')
 var cmd = 'blip blop'
 var cmdObj = shello(cmd, {stdio: 'pipe', encoding:'utf-8'})
 
@@ -64,9 +64,9 @@ shelljs is slow
 shelljs: 198.773ms
 *****************************
 
-********** shell-o **********
-shell-o is fast
-shell-o: 17.926ms
+********** shelljs.exec **********
+shelljs.exec is fast
+shelljs.exec: 17.926ms
 *****************************
 
 **Author says**
