@@ -34,7 +34,7 @@ describe('shelljs.exec', function() {
     imp.expect(cmdObj.ok).to.be.false
   })
 
-  it('drop-in', function() {
+  it('replacement', function() {
 
     var shelljs = require('shelljs')
     var cmd = 'echo hello'

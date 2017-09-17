@@ -7,15 +7,17 @@
 [![npm](https://img.shields.io/npm/dm/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
 [![node](https://img.shields.io/node/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
 
-**Drop-in replacement for shelljs' slow exec method, 5x faster**
+**Replacement for shelljs' slow exec method - 20x faster**
+
+shelljs is FAST but its exec method is SLOW, use this module to override shelljs' exec method
+
+
+
+Use this module to override shelljs.exec for a faster experience
+
+
 
 **shelljs.exec** is a wrapper for [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
-
-IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
-
-IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
-
-IGNORE THIS README, IT IS BEING UPDATED RIGHT NOW
 
 shelljs.exec takes identical arguments ... `(command[, options])` ... but does not throw by default.
 
