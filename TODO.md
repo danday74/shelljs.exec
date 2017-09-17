@@ -1,1 +1,1 @@
-* Update README and delete TODO
+* Update README, tidy tables and delete TODO
