@@ -13,9 +13,9 @@ function report(cmd, oldTimeSum, newTimeSum, cmdTimeSum, shelljsCmd) {
 
   function getWord(percent) {
     if (percent < 100)
-      return chalk.green((100 / percent).toFixed(1) + ' times faster than shelljs.exec')
+      return chalk.green((100 / percent).toFixed(1) + ' times faster than shelljs.exec (this module)')
     else
-      return chalk.red((percent / 100).toFixed(1) + ' times slower than shelljs.exec')
+      return chalk.red((percent / 100).toFixed(1) + ' times slower than shelljs.exec (this module)')
   }
 
   var oldTimeAvg, newTimeAvg, cmdTimeAvg
@@ -35,8 +35,8 @@ function report(cmd, oldTimeSum, newTimeSum, cmdTimeSum, shelljsCmd) {
 
   console.log(chalk.blue('COMMAND =', cmd))
   console.log(chalk.grey('AVERAGE TIMES FOR ' + COUNT + ' RUNS'))
-  console.log(chalk.grey('shelljs.exec --------------------> ', oldTimeAvg.toFixed(2) + 'ms', ' (' + oldTimePct.toFixed(2) + '%)', ' ' + oldTimeWord))
-  console.log(chalk.grey('shello --------------------------> ', newTimeAvg.toFixed(2) + 'ms', ' (100%)'))
+  console.log(chalk.grey('shelljs.exec (from shelljs) -----> ', oldTimeAvg.toFixed(2) + 'ms', ' (' + oldTimePct.toFixed(2) + '%)', ' ' + oldTimeWord))
+  console.log(chalk.grey('shelljs.exec (this module) ------> ', newTimeAvg.toFixed(2) + 'ms', ' (100%)'))
   if (cmdTimeSum && shelljsCmd) {
     console.log(chalk.grey('shelljs.' + shelljsCmd + '> ', cmdTimeAvg.toFixed(2) + 'ms', ' (' + cmdTimePct.toFixed(2) + '%)', ' ' + cmdTimeWord))
   }
