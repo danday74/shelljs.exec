@@ -6,7 +6,7 @@ var shelljs = require('shelljs')
 var imp = require('../_js/testImports')
 var shelljsExec = require('../../index')
 
-var COUNT = 1000
+var COUNT = 5
 var RANGE = imp.range(COUNT)
 
 function report(cmd, oldTimeSum, newTimeSum, cmdTimeSum, shelljsCmd) {

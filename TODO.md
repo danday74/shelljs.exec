@@ -1,3 +1,1 @@
-* Run benchmarks on Windows and Linux and OSX :)
-
-* Update README
+* Update README and delete TODO
