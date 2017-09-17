@@ -15,9 +15,11 @@
 
 ## Introduction
 
-shelljs is FAST but its exec method is SLOW, use this module instead of shelljs' exec method
+shelljs is FAST but its exec method is SLOW, use this module instead of shelljs' exec method for speeds [20x faster](#benchmarks)
 
 shelljs.exec is a zero-dependency module
+
+It takes 2 arguments, the command to execute and an [options object](#options-object)
 
 
 
