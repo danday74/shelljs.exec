@@ -45,7 +45,7 @@ function report(cmd, oldTimeSum, newTimeSum, cmdTimeSum, shelljsCmd) {
 describe('benchmarks: shelljs v shelljs.exec', function() {
 
   var cmdObj, start, end
-  var shelljsExecTime, shelloTime, shelljsCmdTime
+  var oldTime, newTime, cmdTime
 
   describe('shelljs supported commands', function() {
 
@@ -61,23 +61,23 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           cmdObj = shelljs.exec('echo hello', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello' + imp.EOL)
-          shelljsExecTime = end - start
+          oldTime = end - start
 
           start = now()
           cmdObj = shelljsExec('echo hello', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello' + imp.EOL)
-          shelloTime = end - start
+          newTime = end - start
 
           start = now()
           cmdObj = shelljs.echo('hello')
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello')
-          shelljsCmdTime = end - start
+          cmdTime = end - start
 
-          oldTimeSum += shelljsExecTime
-          newTimeSum += shelloTime
-          cmdTimeSum += shelljsCmdTime
+          oldTimeSum += oldTime
+          newTimeSum += newTime
+          cmdTimeSum += cmdTime
         })
 
         report('echo hello', oldTimeSum, newTimeSum, cmdTimeSum, 'echo --------------------')
@@ -104,24 +104,24 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           cmdObj = shelljs.exec('which git', {silent: true})
           end = now()
           imp.expect(cmdObj.code).to.equal(0)
-          shelljsExecTime = end - start
+          oldTime = end - start
 
           start = now()
           cmdObj = shelljsExec('which git', {silent: true})
           end = now()
           imp.expect(cmdObj.code).to.equal(0)
-          shelloTime = end - start
+          newTime = end - start
 
           start = now()
           cmdObj = shelljs.which('git')
           end = now()
           imp.expect(cmdObj).to.not.be.null
           imp.expect(cmdObj.code).to.equal(0)
-          shelljsCmdTime = end - start
+          cmdTime = end - start
 
-          oldTimeSum += shelljsExecTime
-          newTimeSum += shelloTime
-          cmdTimeSum += shelljsCmdTime
+          oldTimeSum += oldTime
+          newTimeSum += newTime
+          cmdTimeSum += cmdTime
         })
 
         report('which git', oldTimeSum, newTimeSum, cmdTimeSum, 'which -------------------')
@@ -151,23 +151,23 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           cmdObj = shelljs.exec('cat ' + file1 + ' ' + file2, {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
-          shelljsExecTime = end - start
+          oldTime = end - start
 
           start = now()
           cmdObj = shelljsExec('cat ' + file1 + ' ' + file2, {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
-          shelloTime = end - start
+          newTime = end - start
 
           start = now()
           cmdObj = shelljs.cat(file1, file2)
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
-          shelljsCmdTime = end - start
+          cmdTime = end - start
 
-          oldTimeSum += shelljsExecTime
-          newTimeSum += shelloTime
-          cmdTimeSum += shelljsCmdTime
+          oldTimeSum += oldTime
+          newTimeSum += newTime
+          cmdTimeSum += cmdTime
         })
 
         report('cat file1 file2', oldTimeSum, newTimeSum, cmdTimeSum, 'cat ---------------------')
@@ -197,16 +197,16 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           cmdObj = shelljs.exec('printf hello', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello')
-          shelljsExecTime = end - start
+          oldTime = end - start
 
           start = now()
           cmdObj = shelljsExec('printf hello', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('hello')
-          shelloTime = end - start
+          newTime = end - start
 
-          oldTimeSum += shelljsExecTime
-          newTimeSum += shelloTime
+          oldTimeSum += oldTime
+          newTimeSum += newTime
         })
 
         report('printf hello', oldTimeSum, newTimeSum)
@@ -233,16 +233,16 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           cmdObj = shelljs.exec('whoami', {silent: true})
           end = now()
           imp.expect(cmdObj.code).to.equal(0)
-          shelljsExecTime = end - start
+          oldTime = end - start
 
           start = now()
           cmdObj = shelljsExec('whoami', {silent: true})
           end = now()
           imp.expect(cmdObj.code).to.equal(0)
-          shelloTime = end - start
+          newTime = end - start
 
-          oldTimeSum += shelljsExecTime
-          newTimeSum += shelloTime
+          oldTimeSum += oldTime
+          newTimeSum += newTime
         })
 
         report('whoami', oldTimeSum, newTimeSum)
@@ -269,16 +269,16 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           cmdObj = shelljs.exec('git rev-parse --is-inside-work-tree', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('true\n')
-          shelljsExecTime = end - start
+          oldTime = end - start
 
           start = now()
           cmdObj = shelljsExec('git rev-parse --is-inside-work-tree', {silent: true})
           end = now()
           imp.expect(cmdObj.stdout).to.equal('true\n')
-          shelloTime = end - start
+          newTime = end - start
 
-          oldTimeSum += shelljsExecTime
-          newTimeSum += shelloTime
+          oldTimeSum += oldTime
+          newTimeSum += newTime
         })
 
         report('git rev-parse --is-inside-work-tree', oldTimeSum, newTimeSum)
