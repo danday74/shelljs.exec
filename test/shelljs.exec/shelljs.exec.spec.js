@@ -37,12 +37,10 @@ describe('shelljs.exec', function() {
   it('replacement', function() {
 
     var shelljs = require('shelljs')
-    var cmd = 'echo hello'
-    var cmdObj1 = shelljs.exec(cmd, {silent: true})
+    var cmdObj1 = shelljs.exec('echo hello', {silent: true})
 
-    shelljs.exec = require('../../index')
-
-    var cmdObj2 = shelljs.exec(cmd, {silent: true})
+    var shelljsExec = require('../../index')
+    var cmdObj2 = shelljsExec('echo hello', {silent: true})
 
     imp.expect(cmdObj1.error).to.be.undefined
     imp.expect(cmdObj2.error).to.be.null
