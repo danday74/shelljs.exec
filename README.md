@@ -91,6 +91,28 @@ These tables compare average execution times based on 1000 test runs:
 
 Linux (Travis CI) Node v6
 
+| command                 | shelljs.exec (this module) | shelljs.exec (from shelljs) | shelljs supported command |
+|-------------------------|----------------------------|-----------------------------|---------------------------|
+| echo hello              | 4.16ms                     | 103.45ms                    | 0.17ms (shelljs.echo)     |
+|                         |                            | 24.9x slower                | 24.4x faster              |
+|                         |                            |                             |                           |
+| which git               | 75.43ms                    | 169.85ms                    | 0.90ms (shelljs.which)    |
+|                         |                            | 2.3x slower                 | 83.5x faster              |
+|                         |                            |                             |                           |
+| cat file1 file2         | 3.97ms                     | 105.03ms                    | 0.59ms (shelljs.cat)      |
+|                         |                            | 26.5x slower                | 6.7x faster               |
+|                         |                            |                             |                           |
+| printf hello            | 3.17ms                     | 97.84ms                     | N/A                       |
+|                         |                            | 30.8x slower                |                           |
+|                         |                            |                             |                           |
+| whoami                  | 4.42ms                     | 110.14ms                    | N/A                       |
+|                         |                            | 24.9x slower                |                           |
+|                         |                            |                             |                           |
+| git rev-parse           | 4.88ms                     | 100.61ms                    | N/A                       |
+|   --is-inside-work-tree |                            | 20.6x slower                |                           |
+
+
+
 | command                             | shelljs.exec (this module) | shelljs.exec (from shelljs) |              | shelljs supported command |              |
 |-------------------------------------|----------------------------|-----------------------------|--------------|---------------------------|--------------|
 | echo hello                          | 4.16ms                     | 103.45ms                    | 24.9x slower | 0.17ms (shelljs.echo)     | 24.4x faster |
