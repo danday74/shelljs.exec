@@ -1,0 +1,73 @@
+Windows (GIT bash)
+Node v6.10.0
+------------------
+
+COMMAND = echo hello
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  188.52ms  (1211.70%)  12.1 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  15.56ms  (100%)
+shelljs.echo -------------------->  0.43ms  (2.78%)  35.9 times faster than shelljs.exec (this module)
+
+COMMAND = which git
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  332.20ms  (202.11%)  2.0 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  164.37ms  (100%)
+shelljs.which ------------------->  1.19ms  (0.72%)  138.6 times faster than shelljs.exec (this module)
+
+COMMAND = cat file1 file2
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  217.73ms  (531.37%)  5.3 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  40.97ms  (100%)
+shelljs.cat --------------------->  0.77ms  (1.88%)  53.3 times faster than shelljs.exec (this module)
+
+COMMAND = printf hello
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  235.87ms  (541.56%)  5.4 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  43.55ms  (100%)
+
+COMMAND = whoami
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  247.77ms  (547.43%)  5.5 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  45.26ms  (100%)
+
+COMMAND = git rev-parse --is-inside-work-tree
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  231.35ms  (532.92%)  5.3 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  43.41ms  (100%)
+
+Linux (Travis CI)
+Node v6
+------------------
+
+COMMAND = echo hello
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  103.45ms  (2489.63%)  24.9 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  4.16ms  (100%)
+shelljs.echo -------------------->  0.17ms  (4.10%)  24.4 times faster than shelljs.exec (this module)
+
+COMMAND = which git
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  169.85ms  (225.18%)  2.3 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  75.43ms  (100%)
+shelljs.which ------------------->  0.90ms  (1.20%)  83.5 times faster than shelljs.exec (this module)
+
+COMMAND = cat file1 file2
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  105.03ms  (2648.61%)  26.5 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  3.97ms  (100%)
+shelljs.cat --------------------->  0.59ms  (14.90%)  6.7 times faster than shelljs.exec (this module)
+
+COMMAND = printf hello
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  97.84ms  (3084.72%)  30.8 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  3.17ms  (100%)
+
+COMMAND = whoami
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  110.14ms  (2490.19%)  24.9 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  4.42ms  (100%)
+
+COMMAND = git rev-parse --is-inside-work-tree
+AVERAGE TIMES FOR 1000 RUNS
+shelljs.exec (from shelljs) ----->  100.61ms  (2063.79%)  20.6 times slower than shelljs.exec (this module)
+shelljs.exec (this module) ------>  4.88ms  (100%)
