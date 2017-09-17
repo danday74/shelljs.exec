@@ -15,9 +15,13 @@
 
 ## Introduction
 
-shelljs is FAST but its exec method is SLOW, use this module instead of shelljs' exec method for speeds [20x faster](#benchmarks)
+shelljs is FAST but its exec method is SLOW!
 
-shelljs.exec is a zero-dependency module
+- [x] Use this module instead of shelljs' exec method for speeds [20x faster](#benchmarks)
+
+- [x] Continue to use shelljs' other methods as they are lightning fast (e.g. shelljs.echo shelljs.which shelljs.cat etc)
+
+This is a zero-dependency module
 
 It takes 2 arguments, the command to execute and an [options object](#options-object)
 
@@ -101,6 +105,16 @@ Windows (GIT bash) Node v6.10.0
 | printf hello                        | 43.55ms                    | 235.87ms                    | 5.4x slower  | N/A                       |               |
 | whoami                              | 45.26ms                    | 247.77ms                    | 5.5x slower  | N/A                       |               |
 | git rev-parse --is-inside-work-tree | 43.41ms                    | 231.35ms                    | 5.3x slower  | N/A                       |               |
+
+
+
+<br>
+
+## Limitations
+
+* Currently this module does not support chaining (shelljs does)
+
+* Currently this module only supports synchronous execution, asynchronous callbacks are not available (shelljs claims full async support)
 
 
 
