@@ -1,7 +1,7 @@
 {
   "name": "shelljs.exec",
   "version": "1.0.3",
-  "description": "Replacement for shelljs' slow exec method - 20x faster",
+  "description": "Replacement for shelljs' slow exec method - benchmarked 20x faster",
   "author": "Daniel Lewis BSc (Hons)",
   "license": "ISC",
   "main": "index.js",

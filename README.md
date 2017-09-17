@@ -7,7 +7,7 @@
 [![npm](https://img.shields.io/npm/dm/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
 [![node](https://img.shields.io/node/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
 
-**Replacement for shelljs' slow exec method - 20x faster**
+**Replacement for shelljs' slow exec method - benchmarked 20x faster**
 
 
 
