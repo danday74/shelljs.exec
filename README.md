@@ -23,13 +23,13 @@ shelljs is **FAST** but its exec method is **SLOW**
 
 This is a zero-dependency module
 
-It takes 2 arguments, the command to execute and an [options object](#options-object)
-
 
 
 <br>
 
 ## Usage
+
+This module takes 2 arguments, the command to execute and an [options object](#options-object)
 
 On success:
 
