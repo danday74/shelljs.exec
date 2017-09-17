@@ -73,6 +73,8 @@ Available options:
 
 * and any option available to Node.js' [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
 
+When the `stdio` option of child_process.execSync is provided, it overrides `silent`
+
 
 
 <br>
