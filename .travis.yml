@@ -1,10 +1,6 @@
 language: node_js
 node_js:
-  - node
-  - 8
   - 6
-  - 4
-  - 4.0.0
 os:
   - osx
 after_success:
