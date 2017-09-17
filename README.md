@@ -67,7 +67,9 @@ expect(cmdObj.ok).to.be.false
 
 ## Options object
 
-* silent: Do not echo any output to console. Defaults to false.
+Available options:
+
+* `silent`: Do not echo any output to console - Defaults to false
 
 * and any option available to Node.js' [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
 
