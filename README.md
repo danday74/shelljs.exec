@@ -15,11 +15,11 @@
 
 ## Introduction
 
-shelljs is FAST but its exec method is SLOW!
+shelljs is **FAST** but its exec method is **SLOW**
 
 - [x] Use this module instead of shelljs' exec method for speeds [20x faster](#benchmarks)
 
-- [x] Continue to use shelljs' other methods as they are lightning fast (e.g. shelljs.echo shelljs.which shelljs.cat etc)
+- [x] Use shelljs' other methods as they are lightning fast (e.g. shelljs.echo shelljs.which shelljs.cat etc)
 
 This is a zero-dependency module
 
@@ -83,9 +83,11 @@ When the `stdio` option of child_process.execSync is provided, it overrides `sil
 
 Benchmark test result logs are [HERE](https://travis-ci.org/danday74/shelljs.exec)
 
-Generally speaking, on Linux shelljs.exec is 20 times faster and on Windows 5 times faster.
+Generally speaking, on Linux shelljs.exec (this module) is 20 times faster and on Windows 5 times faster than shelljs' exec method.
 
-These tables show average execution times based on 1000 test runs:
+However, shelljs supported commands, where available, are much faster than both. Use this module where a shelljs supported command is unavailable.
+
+These tables compare average execution times based on 1000 test runs:
 
 Linux (Travis CI) Node v6
 
