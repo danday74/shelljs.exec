@@ -9,7 +9,7 @@ var shelljsExec = require('../../index')
 var COUNT = 2
 var RANGE = imp.range(COUNT)
 
-function report(cmd, shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, shelljsCmd) {
+function report(cmd, oldTimeSum, newTimeSum, cmdTimeSum, shelljsCmd) {
 
   function getWord(percent) {
     if (percent < 100)
@@ -18,27 +18,27 @@ function report(cmd, shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, shell
       return chalk.red((percent / 100).toFixed(1) + ' times slower than shelljs.exec')
   }
 
-  var shelljsExecTimeAvg, shelloTimeAvg, shelljsCmdTimeAvg
-  var shelljsExecTimePct, shelljsCmdTimePct, shelljsExecTimeWord, shelljsCmdTimeWord
+  var oldTimeAvg, newTimeAvg, cmdTimeAvg
+  var oldTimePct, cmdTimePct, oldTimeWord, cmdTimeWord
 
-  shelloTimeAvg = shelloTimeSum / COUNT
+  newTimeAvg = newTimeSum / COUNT
 
-  shelljsExecTimeAvg = shelljsExecTimeSum / COUNT
-  shelljsExecTimePct = 100 / shelloTimeAvg * shelljsExecTimeAvg
-  shelljsExecTimeWord = getWord(shelljsExecTimePct)
+  oldTimeAvg = oldTimeSum / COUNT
+  oldTimePct = 100 / newTimeAvg * oldTimeAvg
+  oldTimeWord = getWord(oldTimePct)
 
-  if (shelljsCmdTimeSum) {
-    shelljsCmdTimeAvg = shelljsCmdTimeSum / COUNT
-    shelljsCmdTimePct = 100 / shelloTimeAvg * shelljsCmdTimeAvg
-    shelljsCmdTimeWord = getWord(shelljsCmdTimePct)
+  if (cmdTimeSum) {
+    cmdTimeAvg = cmdTimeSum / COUNT
+    cmdTimePct = 100 / newTimeAvg * cmdTimeAvg
+    cmdTimeWord = getWord(cmdTimePct)
   }
 
   console.log(chalk.blue('COMMAND =', cmd))
   console.log(chalk.grey('AVERAGE TIMES FOR ' + COUNT + ' RUNS'))
-  console.log(chalk.grey('shelljs.exec --------------------> ', shelljsExecTimeAvg.toFixed(2) + 'ms', ' (' + shelljsExecTimePct.toFixed(2) + '%)', ' ' + shelljsExecTimeWord))
-  console.log(chalk.grey('shello --------------------------> ', shelloTimeAvg.toFixed(2) + 'ms', ' (100%)'))
-  if (shelljsCmdTimeSum && shelljsCmd) {
-    console.log(chalk.grey('shelljs.' + shelljsCmd + '> ', shelljsCmdTimeAvg.toFixed(2) + 'ms', ' (' + shelljsCmdTimePct.toFixed(2) + '%)', ' ' + shelljsCmdTimeWord))
+  console.log(chalk.grey('shelljs.exec --------------------> ', oldTimeAvg.toFixed(2) + 'ms', ' (' + oldTimePct.toFixed(2) + '%)', ' ' + oldTimeWord))
+  console.log(chalk.grey('shello --------------------------> ', newTimeAvg.toFixed(2) + 'ms', ' (100%)'))
+  if (cmdTimeSum && shelljsCmd) {
+    console.log(chalk.grey('shelljs.' + shelljsCmd + '> ', cmdTimeAvg.toFixed(2) + 'ms', ' (' + cmdTimePct.toFixed(2) + '%)', ' ' + cmdTimeWord))
   }
 }
 
@@ -53,7 +53,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
 
       it('echo hello', function() {
 
-        var shelljsExecTimeSum = 0, shelloTimeSum = 0, shelljsCmdTimeSum = 0
+        var oldTimeSum = 0, newTimeSum = 0, cmdTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -75,12 +75,12 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           imp.expect(cmdObj.stdout).to.equal('hello')
           shelljsCmdTime = end - start
 
-          shelljsExecTimeSum += shelljsExecTime
-          shelloTimeSum += shelloTime
-          shelljsCmdTimeSum += shelljsCmdTime
+          oldTimeSum += shelljsExecTime
+          newTimeSum += shelloTime
+          cmdTimeSum += shelljsCmdTime
         })
 
-        report('echo hello', shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, 'echo --------------------')
+        report('echo hello', oldTimeSum, newTimeSum, cmdTimeSum, 'echo --------------------')
       })
     })
 
@@ -96,7 +96,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
 
       it('which git', function() {
 
-        var shelljsExecTimeSum = 0, shelloTimeSum = 0, shelljsCmdTimeSum = 0
+        var oldTimeSum = 0, newTimeSum = 0, cmdTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -119,12 +119,12 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           imp.expect(cmdObj.code).to.equal(0)
           shelljsCmdTime = end - start
 
-          shelljsExecTimeSum += shelljsExecTime
-          shelloTimeSum += shelloTime
-          shelljsCmdTimeSum += shelljsCmdTime
+          oldTimeSum += shelljsExecTime
+          newTimeSum += shelloTime
+          cmdTimeSum += shelljsCmdTime
         })
 
-        report('which git', shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, 'which -------------------')
+        report('which git', oldTimeSum, newTimeSum, cmdTimeSum, 'which -------------------')
       })
     })
 
@@ -140,7 +140,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
 
       it('cat file1 file2', function() {
 
-        var shelljsExecTimeSum = 0, shelloTimeSum = 0, shelljsCmdTimeSum = 0
+        var oldTimeSum = 0, newTimeSum = 0, cmdTimeSum = 0
 
         var file1 = __dirname + '/file1'
         var file2 = __dirname + '/file2'
@@ -165,12 +165,12 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           imp.expect(cmdObj.stdout).to.equal('hello\nworld\n')
           shelljsCmdTime = end - start
 
-          shelljsExecTimeSum += shelljsExecTime
-          shelloTimeSum += shelloTime
-          shelljsCmdTimeSum += shelljsCmdTime
+          oldTimeSum += shelljsExecTime
+          newTimeSum += shelloTime
+          cmdTimeSum += shelljsCmdTime
         })
 
-        report('cat file1 file2', shelljsExecTimeSum, shelloTimeSum, shelljsCmdTimeSum, 'cat ---------------------')
+        report('cat file1 file2', oldTimeSum, newTimeSum, cmdTimeSum, 'cat ---------------------')
       })
     })
   })
@@ -189,7 +189,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
 
       it('printf hello', function() {
 
-        var shelljsExecTimeSum = 0, shelloTimeSum = 0
+        var oldTimeSum = 0, newTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -205,11 +205,11 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           imp.expect(cmdObj.stdout).to.equal('hello')
           shelloTime = end - start
 
-          shelljsExecTimeSum += shelljsExecTime
-          shelloTimeSum += shelloTime
+          oldTimeSum += shelljsExecTime
+          newTimeSum += shelloTime
         })
 
-        report('printf hello', shelljsExecTimeSum, shelloTimeSum)
+        report('printf hello', oldTimeSum, newTimeSum)
       })
     })
 
@@ -225,7 +225,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
 
       it('whoami', function() {
 
-        var shelljsExecTimeSum = 0, shelloTimeSum = 0
+        var oldTimeSum = 0, newTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -241,11 +241,11 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           imp.expect(cmdObj.code).to.equal(0)
           shelloTime = end - start
 
-          shelljsExecTimeSum += shelljsExecTime
-          shelloTimeSum += shelloTime
+          oldTimeSum += shelljsExecTime
+          newTimeSum += shelloTime
         })
 
-        report('whoami', shelljsExecTimeSum, shelloTimeSum)
+        report('whoami', oldTimeSum, newTimeSum)
       })
     })
 
@@ -261,7 +261,7 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
 
       it('git rev-parse --is-inside-work-tree', function() {
 
-        var shelljsExecTimeSum = 0, shelloTimeSum = 0
+        var oldTimeSum = 0, newTimeSum = 0
 
         RANGE.forEach(function() {
 
@@ -277,11 +277,11 @@ describe('benchmarks: shelljs v shelljs.exec', function() {
           imp.expect(cmdObj.stdout).to.equal('true\n')
           shelloTime = end - start
 
-          shelljsExecTimeSum += shelljsExecTime
-          shelloTimeSum += shelloTime
+          oldTimeSum += shelljsExecTime
+          newTimeSum += shelloTime
         })
 
-        report('git rev-parse --is-inside-work-tree', shelljsExecTimeSum, shelloTimeSum)
+        report('git rev-parse --is-inside-work-tree', oldTimeSum, newTimeSum)
       })
     })
   })
