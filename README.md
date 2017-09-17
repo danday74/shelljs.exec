@@ -19,7 +19,7 @@ shelljs is **FAST** but its exec method is **SLOW**
 
 - [x] Use this module instead of shelljs' exec method for speeds [20x faster](#benchmarks)
 
-- [x] Use shelljs' other methods as they are lightning fast (e.g. shelljs.echo shelljs.which shelljs.cat etc)
+- [x] Use shelljs' other methods as they are lightning fast (e.g. shelljs.echo shelljs.which shelljs.cat)
 
 This is a zero-dependency module
 
