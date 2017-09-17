@@ -6,9 +6,8 @@ describe('shelljs.exec', function() {
 
   it('success', function() {
 
-    var shelljsExec = require('../../index')
-    var cmd = 'echo hello'
-    var cmdObj = shelljsExec(cmd, {silent: true})
+    var exec = require('../../index')
+    var cmdObj = exec('echo hello', {silent: true})
 
     imp.expect(cmdObj).to.eql({
       error: null, // same as child_process.exec
@@ -21,9 +20,8 @@ describe('shelljs.exec', function() {
 
   it('failure', function() {
 
-    var shelljsExec = require('../../index')
-    var cmd = 'blip blop'
-    var cmdObj = shelljsExec(cmd, {silent: true})
+    var exec = require('../../index')
+    var cmdObj = exec('blip blop', {silent: true})
 
     imp.expect(cmdObj.error).to.be.an('error')
     imp.expect(cmdObj.error.message).to.match(/not found|not recognized/)
