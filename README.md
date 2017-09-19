@@ -70,7 +70,7 @@ When the `stdio` option of child_process.execSync is provided, it overrides `sil
 
 [Logs for benchmarks are here](https://travis-ci.org/danday74/shelljs.exec) and [specs are here](test/benchmarks/benchmarks.spec.js)
 
-Generally speaking, on Linux shelljs.exec (this module) is 20 times faster and on Windows 5 times faster than shelljs' exec method.
+Generally speaking, on Linux shelljs.exec (this module) is 20x faster and on Windows 5x faster than shelljs' exec method.
 
 However, shelljs supported commands, where available, are much faster than both. Use this module where no equivalent shelljs supported command is available.
 
