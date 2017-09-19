@@ -95,7 +95,7 @@ These tables compare average execution times based on 1000 test runs:
 
 ##### Windows (GIT bash) Node v6.10.0
 
-![Windows benchmarks](images/linux.png "Windows (GIT bash) Node v6.10.0")
+![Windows benchmarks](images/windows.png "Windows (GIT bash) Node v6.10.0")
 
 
 
