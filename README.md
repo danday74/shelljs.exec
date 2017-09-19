@@ -91,11 +91,11 @@ These tables compare average execution times based on 1000 test runs:
 
 ##### Linux (Travis CI) Node v6
 
-![alt text](images/linux.png)
+![Linux benchmarks](images/linux.png "Linux (Travis CI) Node v6")
 
 ##### Windows (GIT bash) Node v6.10.0
 
-![alt text](images/linux.png)
+![Windows benchmarks](images/linux.png "Windows (GIT bash) Node v6.10.0")
 
 
 
