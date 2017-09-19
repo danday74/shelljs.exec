@@ -4,3 +4,14 @@ environment:
     - nodejs_version: '6'
     - nodejs_version: '4'
     - nodejs_version: '4.0.0'
+
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm test
+
+build: off
