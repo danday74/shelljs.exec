@@ -15,4 +15,3 @@ test_script:
   - npm test
 
 build: off
-
