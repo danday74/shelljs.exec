@@ -89,20 +89,13 @@ However, shelljs supported commands, where available, are much faster than both.
 
 These tables compare average execution times based on 1000 test runs:
 
-Linux (Travis CI) Node v6
+##### Linux (Travis CI) Node v6
 
-![alt text][images/linux.png]
+![alt text](images/linux.png)
 
-Windows (GIT bash) Node v6.10.0
+##### Windows (GIT bash) Node v6.10.0
 
-| command                             | shelljs.exec (this module) | shelljs.exec (from shelljs) |              | shelljs supported command |               |
-|-------------------------------------|----------------------------|-----------------------------|--------------|---------------------------|---------------|
-| echo hello                          | 15.56ms                    | 188.52ms                    | 12.1x slower | 0.43ms (shelljs.echo)     | 35.9x faster  |
-| which git                           | 164.37ms                   | 332.20ms                    | 2.0x slower  | 1.19ms (shelljs.which)    | 138.6x faster |
-| cat file1 file2                     | 40.97ms                    | 217.73ms                    | 5.3x slower  | 0.77ms (shelljs.cat)      | 53.3x faster  |
-| printf hello                        | 43.55ms                    | 235.87ms                    | 5.4x slower  | N/A                       |               |
-| whoami                              | 45.26ms                    | 247.77ms                    | 5.5x slower  | N/A                       |               |
-| git rev-parse --is-inside-work-tree | 43.41ms                    | 231.35ms                    | 5.3x slower  | N/A                       |               |
+![alt text](images/linux.png)
 
 
 
