@@ -19,9 +19,9 @@ shelljs is **FAST** but its exec method is **SLOW**
 
 - [x] Use this module instead of shelljs' exec method for speeds [20x faster](#benchmarks)
 
-- [x] Use shelljs' other methods as they are lightning fast (e.g. shelljs.echo shelljs.which shelljs.cat)
+- [x] Use shelljs' other methods as they are lightning fast (e.g. shelljs.echo shelljs.which shelljs.cat etc)
 
-This is a zero-dependency module
+This module offers a shelljs.exec like interface and is a zero-dependency module
 
 
 
@@ -31,12 +31,14 @@ This is a zero-dependency module
 
 This module takes 2 arguments, the command to execute and an [options object](#options-object)
 
-On success:
-
 ```javascript 1.5
 var exec = require('shelljs.exec')
 var cmdObj = exec('echo hello', {silent: true})
+```
 
+Continuing the code above, the resulting JSON looks like this:
+
+```javascript 1.5
 expect(cmdObj).to.eql({
   error: null,
   stdout: 'hello\n',
@@ -44,21 +46,6 @@ expect(cmdObj).to.eql({
   code: 0,
   ok: true
 })
-```
-
-On failure:
-
-```javascript 1.5
-var exec = require('shelljs.exec')
-var cmdObj = exec('blip blop', {silent: true})
-
-expect(cmdObj.error).to.be.an('error')
-expect(cmdObj.error.message).to.match(/not found|not recognized/)
-
-expect(cmdObj.stdout).to.equal('')
-expect(cmdObj.stderr).to.match(/not found|not recognized/)
-expect(cmdObj.code).to.be.above(0)
-expect(cmdObj.ok).to.be.false
 ```
 
 
@@ -69,7 +56,7 @@ expect(cmdObj.ok).to.be.false
 
 Available options:
 
-* `silent`: Do not echo any output to console - Defaults to false
+* `silent`: Do not echo any output to console, defaults to false
 
 * and any option available to Node.js' [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
 
@@ -81,13 +68,13 @@ When the `stdio` option of child_process.execSync is provided, it overrides `sil
 
 ## Benchmarks
 
-Benchmark test result logs are [HERE](https://travis-ci.org/danday74/shelljs.exec)
+Logs for benchmarks are viewable [HERE](https://travis-ci.org/danday74/shelljs.exec)
 
 Generally speaking, on Linux shelljs.exec (this module) is 20 times faster and on Windows 5 times faster than shelljs' exec method.
 
 However, shelljs supported commands, where available, are much faster than both. Use this module where a shelljs supported command is unavailable.
 
-These tables compare average execution times based on 1000 test runs:
+These tables compare average command execution times based on 1000 test runs:
 
 ##### Linux (Travis CI) Node v6
 
@@ -103,9 +90,9 @@ These tables compare average execution times based on 1000 test runs:
 
 ## Limitations
 
-* Currently this module does not support chaining (shelljs does)
+* No support for chaining (unlike shelljs)
 
-* Currently this module only supports synchronous execution, asynchronous callbacks are not available (shelljs claims full async support)
+* Synchronous execution only
 
 
 
