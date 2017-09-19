@@ -1,6 +1,5 @@
 # shelljs.exec
-
-[![Linux Build Status](https://img.shields.io/travis/danday74/shelljs.exec/master.svg?label=linux)](https://travis-ci.org/danday74/shelljs.exec)
+<br>[![Linux Build Status](https://img.shields.io/travis/danday74/shelljs.exec/master.svg?label=linux)](https://travis-ci.org/danday74/shelljs.exec)
 [![Windows Build Status](https://img.shields.io/appveyor/ci/danday74/shelljs-exec/master.svg?label=windows)](https://ci.appveyor.com/project/danday74/shelljs-exec)
 [![Coverage Status](https://coveralls.io/repos/github/danday74/shelljs.exec/badge.svg?branch=master)](https://coveralls.io/github/danday74/shelljs.exec?branch=master)
 <br>[![npm](https://img.shields.io/npm/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
