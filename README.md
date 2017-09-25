@@ -30,6 +30,8 @@ This module offers a shelljs.exec like interface and is a zero-dependency module
 
 ## Usage
 
+```npm install --save shelljs.exec```
+
 This module takes 2 arguments, the command to execute and an [options object](#options-object)
 
 ```javascript 1.5
