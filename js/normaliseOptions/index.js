@@ -13,7 +13,7 @@ function normaliseOptions(options) {
 
   var DEFAULTS = require('./defaultOptions')
 
-  if (options == null || !isObject(options)) {
+  if (!isObject(options)) {
     options = {}
   } else {
 
