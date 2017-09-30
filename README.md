@@ -95,7 +95,7 @@ These tables compare average command execution times based on 1000 test runs:
 
 * No support for chaining (unlike shelljs)
 
-* Synchronous execution only
+* Synchronous execution only (but feel free to wrap with a callback or promise)
 
 
 
