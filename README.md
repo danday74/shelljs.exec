@@ -16,7 +16,7 @@
 
 ## Introduction
 
-[shelljs](https://www.npmjs.com/package/shelljs) is **FAST** but its exec method is **SLOW**
+[shelljs](https://www.npmjs.com/package/shelljs) is **FAST** &nbsp;![FAST](images/fast1.png "FAST")&nbsp; but its exec method is **SLOW** &nbsp;![SLOW](images/slow2.png "SLOW")
 
 - [x] Use this module instead of shelljs' exec method for speeds [20x faster](#benchmarks)
 
