@@ -59,6 +59,8 @@ expect(cmdObj).to.eql({
 
 Available options:
 
+* `encoding`: Defaults to 'utf8'
+
 * `silent`: Do not echo any output to console, defaults to false
 
 * and any option available to Node.js' [child_process.execSync](https://nodejs.org/api/child_process.html#child_process_child_process_execsync_command_options)
