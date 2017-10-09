@@ -10,9 +10,18 @@ describe('shelljs.exec', function() {
     var cmdObj = exec('echo hello', {silent: true})
 
     imp.expect(cmdObj).to.eql({
-      error: null, // same as child_process.exec
+      error: null,
       stdout: 'hello' + imp.EOL,
-      stderr: '', // same as child_process.exec
+      stderr: '',
+      code: 0,
+      ok: true
+    })
+
+    var assert = require('assert')
+    assert.deepEqual(cmdObj, {
+      error: null,
+      stdout: 'hello' + imp.EOL,
+      stderr: '',
       code: 0,
       ok: true
     })

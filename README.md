@@ -42,7 +42,8 @@ var cmdObj = exec('echo hello', {silent: true})
 Continuing from the code above, the resulting JSON looks like:
 
 ```javascript 1.5
-expect(cmdObj).to.eql({
+var assert = require('assert')
+assert.deepEqual(cmdObj, {
   error: null,
   stdout: 'hello\n',
   stderr: '',
