@@ -6,7 +6,7 @@
 <br>[![npm](https://img.shields.io/npm/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
 [![Dependencies Status](https://david-dm.org/danday74/shelljs.exec/status.svg)](https://david-dm.org/danday74/shelljs.exec)
 [![npm](https://img.shields.io/npm/dm/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
-[![node](https://img.shields.io/node/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec)
+[![node](https://img.shields.io/node/v/shelljs.exec.svg)](https://www.npmjs.com/package/shelljs.exec) [![Greenkeeper badge](https://badges.greenkeeper.io/danday74/shelljs.exec.svg)](https://greenkeeper.io/)
 
 **Replacement for shelljs' slow exec method - benchmarked 20x faster**
 
